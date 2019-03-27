@@ -1,1 +1,256 @@
 //ALL
+
+#include <stdio.h>
+
+#include<stdio.h>
+//ex_point.c
+int main()
+{
+        int x, y; // on declare la variable x
+        int *ptr_p; // on creer un pointeur
+
+        x = 5; // on initialise la variable x a 5
+        ptr_p = &x; // le pointer ptr_p pointe vers l'addresse de de x
+        printf("Valeur de x origin : %d\n", x);
+        y = *ptr_p; //dereference de u pointer avec * pour pouvoir utiliser
+        y = x + 10;
+        printf("Valeur de y avec pointer :%d...New val de x :%d\n", x, y);
+        return 0;
+}
+
+#----------------------------
+
+#include <stdio.h>
+//ex_pointeurs.c
+int main()
+{
+    int age = 60;
+    int *adresse_age = & age;
+
+    printf("L'age est : %d \n", *adresse_age);
+    printf("L'age est : %p \n", *adresse_age);
+
+    return 0;
+}
+
+#----------------------------
+
+#include <stdio.h>
+//cb_calc.c
+
+//Declaration variables bidons globales
+int alpha_start, nbtbl;
+
+/*Fonction en charge de faire le calcul avec en parametre la table choisie
+
+*/
+calcTab(nbtbl)
+{
+    int start, res;
+    for(start = 1; start != 10; start = start + 1)
+    {
+        res = (nbtbl*start);
+        printf("%dx%d = %d\n", start, nbtbl, res);
+    }
+}
+
+int main(void)
+{
+    printf("Table :");
+    scanf("%d", &alpha_start);
+    calcTab(alpha_start);
+}
+
+#----------------------------
+
+//nawa.c
+
+#include <stdio.h>
+
+#define PI 3.14159
+#define FRAC 4.0f/3.0f
+
+float radius, volume;
+
+int main(void)
+{
+    printf("Please enter the radius of the sphere: ");
+    scanf("%f", &radius);
+    volume = FRAC * (PI * (radius * radius * radius));
+    printf("%.2f\n", volume);
+}
+
+#----------------------------
+
+#include <stdio.h>
+//count.c
+showStars()
+{
+    printf("*******************************************************************\n");
+}
+
+main()
+{
+
+   int numberStart;
+   for (numberStart = 0; numberStart != 10; numberStart =  numberStart + 1) //+
+       printf("Actual Nbr is : %2d\n", numberStart);
+
+   showStars();
+
+   for (numberStart = 10; numberStart != -1; numberStart =  numberStart - 1)  //-
+       printf("Actual Nbr is : %2d\n", numberStart);
+}
+
+#----------------------------
+
+#include <stdio.h>
+
+//ex_03.c
+main()
+{
+   int fahr;
+   //for (fahr = 0; fahr <= 300; fahr = fahr + 20)  //de 0 > 300
+   for (fahr = 300; fahr != 0; fahr = fahr - 20)  //Reverse de 300 > 0
+       printf("%3d %6.1f\n", fahr, (5.0/9.0)*(fahr-32));
+}
+
+#----------------------------
+
+//inv_var.c
+#include <stdio.h>
+
+void main()
+{
+    int a = 2;
+    int b = 5;
+    int tmpvar;
+
+    printf("Var start : A : %d | B : %d\n", a, b);
+    tmpvar = a;
+    a = b;
+    b = tmpvar;
+    printf("Var end : A : %d | B : %d\n", a, b);
+}
+
+#----------------------------
+
+#include <stdio.h>
+
+//ex_01.c
+main()
+{
+    printf("One line, there\n");
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//VARIABLES
+int randomNum, repUser, replayer;
+int flag = 0;
+
+//START
+genRandomNum() //Fonction qui sert à generer des nombre aleatoire
+{
+    randomNum = rand() % 20 + 2;
+    printf("Nbr To Guess : %d\n", randomNum);
+    return randomNum;
+}
+
+verifReponse(repUser)  //Fonction qui va afficher le msg de WIN si la partie est gagne, et leve le flag de sortie.
+{
+    if (repUser == randomNum)
+    {
+        printf("OH ! Yeaaahh !! That's IT !! :D \n");
+        printf("\n");
+        flag = 1;
+        return flag;
+    }
+}
+
+giveHelpPlayer(repplayer) // Fonction qui apporte de l'aide a l'user pour trouver le bon chiffre/nombre
+{
+    if (replayer > randomNum)
+    {
+        printf("Plus bas !!");
+    }
+    if (replayer < randomNum)
+    {
+        printf("Plus Haut !!");
+    }
+}
+
+int main()
+{
+    srand(time(NULL)); //seed pour initialiser un nombre pseudo aleatoire. A faire avant l'appel a la fonction rand.
+    genRandomNum();    // Demande un nombre aleatoire
+    while (flag != 1)
+    {
+         printf("Guess Magic Num :\n");
+         scanf("%d", &repUser);  // prendre la valeur du player via le clavier et l'enregistrer dans la variable
+         verifReponse(repUser);  // Verifiçer la reponse et voir si c'est ok ou non
+         giveHelpPlayer(repUser); // Aide player
+    }
+}
+
+#----------------------------
+
+#include <stdio.h> // je crois que c'est la biblio obligatoire de base en C ! sans on peut rien faire :O
+#include <stdlib.h> //Demande a google :O
+#include <time.h> // je ne sais pas ce que ca fout la mais ca doit servir a quelquechose je pense ><
+#include <unistd.h> // pour utiliser la fonction sleep()
+
+//random_gen.c
+
+//VARIABLES
+int flag = 0;
+int count_baka = 0;
+int randomNumRep;
+int randomNum;
+
+//START
+int genRandomNum() //Fonction qui sert à generer des nombre aleatoire
+{
+    int randomNum;
+    randomNum = rand() % 20 + 2;
+    return randomNum;
+}
+
+int genRandomNumRep() //Fonction qui sert à generer des nombre aleatoire
+{
+    randomNumRep = rand() % 20 + 2;
+    printf(" Fonction randomNumRep ==> Nbr Propose to guess :D : %d\n", randomNumRep);
+    return randomNumRep;
+}
+
+int verifReponse(int repUser)  //Fonction qui va afficher le msg de WIN si la partie est gagne, et leve le flag de sortie.
+{
+    count_baka = (count_baka + 1);
+    if (repUser == randomNum)
+    {
+        printf("OH ! Yeaaahh !! That's IT !! :D \n");
+        printf("Nbr d'essais : %d \n", count_baka);
+        printf("\n");
+        flag = 1;
+        return flag;
+    }
+}
+
+//**********************************************************************************************************************************
+
+int main()
+{
+    srand(time(NULL)); //seed pour initialiser un nombre pseudo aleatoire. A faire avant l'appel a la fonction rand.
+    genRandomNum();    // Demande un nombre aleatoire
+    while (flag != 1)
+    {
+            printf(" **INFO** Nbr To Guess : %d *** \n", randomNum);
+            genRandomNumRep(); //simule la reponse donne par un etre humain malveillant !
+            printf("Ce qui est envoye a la fonction verif est : %d \n", randomNumRep);
+            verifReponse(randomNumRep);  // Verifiçer la reponse et voir si c'est ok ou non
+            //sleep(5);
+    }
+return 0;
+}
+
